@@ -7,18 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1007BED12D84312A0007EA64 /* project_tokei_IPhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BED02D84312A0007EA64 /* project_tokei_IPhoneApp.swift */; };
+		1007BED12D84312A0007EA64 /* project_tokeiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BED02D84312A0007EA64 /* project_tokeiApp.swift */; };
 		1007BED32D84312A0007EA64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BED22D84312A0007EA64 /* ContentView.swift */; };
 		1007BED52D8431340007EA64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1007BED42D8431340007EA64 /* Assets.xcassets */; };
 		1007BED82D8431340007EA64 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1007BED72D8431340007EA64 /* Preview Assets.xcassets */; };
+		1007BEDF2D8433010007EA64 /* TimeSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BEDE2D8433010007EA64 /* TimeSegmentView.swift */; };
+		1007BEE12D8433260007EA64 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BEE02D8433260007EA64 /* ClockView.swift */; };
+		1007BEE32D8433530007EA64 /* SchedulePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BEE22D8433530007EA64 /* SchedulePopupView.swift */; };
+		1007BEE52D8433680007EA64 /* ScheduleAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BEE42D8433680007EA64 /* ScheduleAnalysisView.swift */; };
+		1007BEE72D8433990007EA64 /* ScheduleAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BEE62D8433990007EA64 /* ScheduleAnalyzer.swift */; };
+		1007BEE92D8433B10007EA64 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BEE82D8433B10007EA64 /* ScheduleManager.swift */; };
+		1007BEEB2D8433C60007EA64 /* RecordingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BEEA2D8433C60007EA64 /* RecordingState.swift */; };
+		1007BEED2D8433E20007EA64 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BEEC2D8433E20007EA64 /* Schedule.swift */; };
+		1007BEEF2D84342A0007EA64 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007BEEE2D84342A0007EA64 /* Extensions.swift */; };
+		101D08702D84718A00C8DBE1 /* SchedulePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101D086F2D84718A00C8DBE1 /* SchedulePersistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1007BECD2D84312A0007EA64 /* project_tokei_IPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project_tokei_IPhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1007BED02D84312A0007EA64 /* project_tokei_IPhoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = project_tokei_IPhoneApp.swift; sourceTree = "<group>"; };
+		1007BED02D84312A0007EA64 /* project_tokeiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = project_tokeiApp.swift; sourceTree = "<group>"; };
 		1007BED22D84312A0007EA64 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1007BED42D8431340007EA64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1007BED72D8431340007EA64 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1007BEDE2D8433010007EA64 /* TimeSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSegmentView.swift; sourceTree = "<group>"; };
+		1007BEE02D8433260007EA64 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		1007BEE22D8433530007EA64 /* SchedulePopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePopupView.swift; sourceTree = "<group>"; };
+		1007BEE42D8433680007EA64 /* ScheduleAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAnalysisView.swift; sourceTree = "<group>"; };
+		1007BEE62D8433990007EA64 /* ScheduleAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAnalyzer.swift; sourceTree = "<group>"; };
+		1007BEE82D8433B10007EA64 /* ScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
+		1007BEEA2D8433C60007EA64 /* RecordingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingState.swift; sourceTree = "<group>"; };
+		1007BEEC2D8433E20007EA64 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		1007BEEE2D84342A0007EA64 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		101D086F2D84718A00C8DBE1 /* SchedulePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePersistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +71,17 @@
 		1007BECF2D84312A0007EA64 /* project_tokei_IPhone */ = {
 			isa = PBXGroup;
 			children = (
-				1007BED02D84312A0007EA64 /* project_tokei_IPhoneApp.swift */,
+				1007BED02D84312A0007EA64 /* project_tokeiApp.swift */,
+				1007BEDE2D8433010007EA64 /* TimeSegmentView.swift */,
+				1007BEEC2D8433E20007EA64 /* Schedule.swift */,
+				1007BEEE2D84342A0007EA64 /* Extensions.swift */,
+				1007BEEA2D8433C60007EA64 /* RecordingState.swift */,
+				1007BEE82D8433B10007EA64 /* ScheduleManager.swift */,
+				1007BEE62D8433990007EA64 /* ScheduleAnalyzer.swift */,
+				1007BEE42D8433680007EA64 /* ScheduleAnalysisView.swift */,
+				1007BEE22D8433530007EA64 /* SchedulePopupView.swift */,
+				101D086F2D84718A00C8DBE1 /* SchedulePersistence.swift */,
+				1007BEE02D8433260007EA64 /* ClockView.swift */,
 				1007BED22D84312A0007EA64 /* ContentView.swift */,
 				1007BED42D8431340007EA64 /* Assets.xcassets */,
 				1007BED62D8431340007EA64 /* Preview Content */,
@@ -137,8 +167,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1007BEE32D8433530007EA64 /* SchedulePopupView.swift in Sources */,
+				101D08702D84718A00C8DBE1 /* SchedulePersistence.swift in Sources */,
+				1007BEE52D8433680007EA64 /* ScheduleAnalysisView.swift in Sources */,
+				1007BEE72D8433990007EA64 /* ScheduleAnalyzer.swift in Sources */,
 				1007BED32D84312A0007EA64 /* ContentView.swift in Sources */,
-				1007BED12D84312A0007EA64 /* project_tokei_IPhoneApp.swift in Sources */,
+				1007BEE12D8433260007EA64 /* ClockView.swift in Sources */,
+				1007BEED2D8433E20007EA64 /* Schedule.swift in Sources */,
+				1007BEE92D8433B10007EA64 /* ScheduleManager.swift in Sources */,
+				1007BEDF2D8433010007EA64 /* TimeSegmentView.swift in Sources */,
+				1007BEEB2D8433C60007EA64 /* RecordingState.swift in Sources */,
+				1007BEEF2D84342A0007EA64 /* Extensions.swift in Sources */,
+				1007BED12D84312A0007EA64 /* project_tokeiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
