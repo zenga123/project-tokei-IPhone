@@ -15,7 +15,7 @@ class ScheduleManager: ObservableObject {
     }()
     
     init() {
-        let apiKey = "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"
+        //let apiKey = 
         self.analyzer = ScheduleAnalyzer(apiKey: apiKey)
         
         // 저장된 일정 불러오기 (UserDefaults에서)

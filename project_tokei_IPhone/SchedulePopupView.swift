@@ -11,7 +11,9 @@ struct SchedulePopupView: View {
     let endMinutes: Int
     @ObservedObject var scheduleManager: ScheduleManager
     let initialSelectedHour: Int
+    @Environment(\.colorScheme) var colorScheme
     
+    // 상태 변수들
     @State private var title: String = ""
     @State private var selectedStartHour: Int
     @State private var selectedStartMinute: Int
@@ -77,7 +79,7 @@ struct SchedulePopupView: View {
         self.scheduleManager = scheduleManager
         self.initialSelectedHour = initialSelectedHour
         
-        // Initialize state variables
+        // 상태 변수 초기화
         _selectedStartHour = State(initialValue: startHour)
         _selectedStartMinute = State(initialValue: startMinutes)
         _selectedEndHour = State(initialValue: endHour)
@@ -85,7 +87,7 @@ struct SchedulePopupView: View {
         _title = State(initialValue: schedule.wrappedValue.title)
         _selectedColor = State(initialValue: schedule.wrappedValue.color)
         
-        // Check if this is from recording (exact minutes)
+        // 녹음에서 온 것인지 확인 (정확한 분 단위)
         _isFromRecording = State(initialValue: startMinutes % 5 != 0 || endMinutes % 5 != 0)
     }
     
@@ -94,159 +96,217 @@ struct SchedulePopupView: View {
     }
     
     var body: some View {
-        VStack(spacing: 16) {
-            Text(isNewSchedule ? "일정 추가" : "일정 수정")
-                .font(.headline)
+        ZStack {
+            // 배경색을 전체 화면에 적용
+            (colorScheme == .dark ? Color.black : Color.white)
+                .edgesIgnoringSafeArea(.all)
             
-            if showError {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-                    .font(.system(size: 14))
-            }
-            
-            TextField("제목 없는 일정", text: $title)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.horizontal)
-            
-            HStack {
-                Text("시작 시간")
-                    .foregroundColor(.gray)
+            VStack {
+                // 상단 여백 추가
                 Spacer()
-                Picker("", selection: $selectedStartHour) {
-                    ForEach(0..<24) { hour in
-                        Text(String(format: "%02d", hour)).tag(hour)
-                    }
-                }
-                .pickerStyle(WheelPickerStyle())
-                .frame(width: 60, height: 100)
-                .clipped()
+                    .frame(height: 40)
                 
-                Text(":")
-                    .foregroundColor(.primary)
-                
-                if isFromRecording {
-                    Picker("", selection: $selectedStartMinute) {
-                        Text(String(format: "%02d", startMinutes)).tag(startMinutes)
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    .frame(width: 60, height: 100)
-                    .clipped()
-                } else {
-                    Picker("", selection: $selectedStartMinute) {
-                        ForEach(0..<12) { index in
-                            Text(String(format: "%02d", index * 5)).tag(index * 5)
+                ScrollView {
+                    VStack(spacing: 30) {
+                        Text(isNewSchedule ? "일정 추가" : "일정 수정")
+                            .font(.headline)
+                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                            .padding(.top, 10)
+                        
+                        if showError {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                                .font(.system(size: 14))
                         }
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    .frame(width: 60, height: 100)
-                    .clipped()
-                }
-            }
-            .padding(.horizontal)
-            
-            HStack {
-                Text("종료 시간")
-                    .foregroundColor(.gray)
-                Spacer()
-                if isFromRecording {
-                    Picker("", selection: $selectedEndHour) {
-                        Text(String(format: "%02d", endHour)).tag(endHour)
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    .frame(width: 60, height: 100)
-                    .clipped()
-                } else {
-                    Picker("", selection: $selectedEndHour) {
-                        ForEach(0..<24) { hour in
-                            Text(String(format: "%02d", hour)).tag(hour)
-                        }
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    .frame(width: 60, height: 100)
-                    .clipped()
-                }
-                
-                Text(":")
-                    .foregroundColor(.primary)
-                
-                if isFromRecording {
-                    Picker("", selection: $selectedEndMinute) {
-                        Text(String(format: "%02d", endMinutes)).tag(endMinutes)
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    .frame(width: 60, height: 100)
-                    .clipped()
-                } else {
-                    Picker("", selection: $selectedEndMinute) {
-                        ForEach(0..<12) { index in
-                            Text(String(format: "%02d", index * 5)).tag(index * 5)
-                        }
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    .frame(width: 60, height: 100)
-                    .clipped()
-                }
-            }
-            .padding(.horizontal)
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text("색상")
-                    .foregroundColor(.gray)
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 12) {
-                        ForEach(colors, id: \.1) { color, name in
-                            Button(action: {
-                                selectedColor = color
-                            }) {
-                                ZStack {
-                                    Circle()
-                                        .fill(color)
-                                        .frame(width: 24, height: 24)
-                                    if selectedColor == color {
-                                        Circle()
-                                            .strokeBorder(Color.white, lineWidth: 2)
-                                            .frame(width: 30, height: 30)
-                                    }
+                        
+                        TextField("제목 없는 일정", text: $title)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                            .frame(height: 45)
+                        
+                        HStack {
+                            Text("시작 시간")
+                                .foregroundColor(.gray)
+                            Spacer()
+                            Picker("", selection: $selectedStartHour) {
+                                ForEach(0..<24) { hour in
+                                    Text(String(format: "%02d", hour))
+                                        .tag(hour)
+                                        .foregroundColor(colorScheme == .dark ? .white : .black)
                                 }
                             }
-                            .buttonStyle(.plain)
-                            .frame(width: 32, height: 32)
+                            .pickerStyle(WheelPickerStyle())
+                            .frame(width: 60, height: 100)
+                            .clipped()
+                            .background(colorScheme == .dark ? Color.black : Color.white)
+                            
+                            Text(":")
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
+                            
+                            if isFromRecording {
+                                Picker("", selection: $selectedStartMinute) {
+                                    Text(String(format: "%02d", startMinutes))
+                                        .tag(startMinutes)
+                                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                                }
+                                .pickerStyle(WheelPickerStyle())
+                                .frame(width: 60, height: 100)
+                                .clipped()
+                                .background(colorScheme == .dark ? Color.black : Color.white)
+                            } else {
+                                Picker("", selection: $selectedStartMinute) {
+                                    ForEach(0..<12) { index in
+                                        Text(String(format: "%02d", index * 5))
+                                            .tag(index * 5)
+                                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                                    }
+                                }
+                                .pickerStyle(WheelPickerStyle())
+                                .frame(width: 60, height: 100)
+                                .clipped()
+                                .background(colorScheme == .dark ? Color.black : Color.white)
+                            }
                         }
+                        .padding(.horizontal)
+                        
+                        HStack {
+                            Text("종료 시간")
+                                .foregroundColor(.gray)
+                            Spacer()
+                            if isFromRecording {
+                                Picker("", selection: $selectedEndHour) {
+                                    Text(String(format: "%02d", endHour))
+                                        .tag(endHour)
+                                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                                }
+                                .pickerStyle(WheelPickerStyle())
+                                .frame(width: 60, height: 100)
+                                .clipped()
+                                .background(colorScheme == .dark ? Color.black : Color.white)
+                            } else {
+                                Picker("", selection: $selectedEndHour) {
+                                    ForEach(0..<24) { hour in
+                                        Text(String(format: "%02d", hour))
+                                            .tag(hour)
+                                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                                    }
+                                }
+                                .pickerStyle(WheelPickerStyle())
+                                .frame(width: 60, height: 100)
+                                .clipped()
+                                .background(colorScheme == .dark ? Color.black : Color.white)
+                            }
+                            
+                            Text(":")
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
+                            
+                            if isFromRecording {
+                                Picker("", selection: $selectedEndMinute) {
+                                    Text(String(format: "%02d", endMinutes))
+                                        .tag(endMinutes)
+                                        .foregroundColor(colorScheme == .dark ? .white : .black)
+                                }
+                                .pickerStyle(WheelPickerStyle())
+                                .frame(width: 60, height: 100)
+                                .clipped()
+                                .background(colorScheme == .dark ? Color.black : Color.white)
+                            } else {
+                                Picker("", selection: $selectedEndMinute) {
+                                    ForEach(0..<12) { index in
+                                        Text(String(format: "%02d", index * 5))
+                                            .tag(index * 5)
+                                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                                    }
+                                }
+                                .pickerStyle(WheelPickerStyle())
+                                .frame(width: 60, height: 100)
+                                .clipped()
+                                .background(colorScheme == .dark ? Color.black : Color.white)
+                            }
+                        }
+                        .padding(.horizontal)
+                        
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("색상")
+                                .foregroundColor(.gray)
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 12) {
+                                    ForEach(colors, id: \.1) { color, name in
+                                        Button(action: {
+                                            selectedColor = color
+                                        }) {
+                                            ZStack {
+                                                Circle()
+                                                    .fill(color)
+                                                    .frame(width: 24, height: 24)
+                                                if selectedColor == color {
+                                                    Circle()
+                                                        .strokeBorder(colorScheme == .dark ? Color.white : Color.black, lineWidth: 2)
+                                                        .frame(width: 30, height: 30)
+                                                    
+                                                    // 추가 표시 - 선택된 색상에 흰색 테두리 + 그림자 효과
+                                                    Circle()
+                                                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                                                        .frame(width: 32, height: 32)
+                                                        .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 0)
+                                                }
+                                            }
+                                        }
+                                        .buttonStyle(.plain)
+                                        .frame(width: 32, height: 32)
+                                    }
+                                }
+                                .padding(.horizontal, 4)
+                            }
+                        }
+                        .padding(.horizontal)
+                        
+                        HStack {
+                            Spacer()
+                            
+                            Button("취소") {
+                                isPresented = false
+                            }
+                            .buttonStyle(.bordered)
+                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                            .frame(width: 90, height: 40)
+                            
+                            Spacer()
+                                .frame(width: 20)
+                            
+                            Button(isNewSchedule ? "저장" : "수정") {
+                                saveSchedule()
+                            }
+                            .buttonStyle(.bordered)
+                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                            .disabled(!isValidTimeRange)
+                            .frame(width: 90, height: 40)
+                            
+                            Spacer()
+                            
+                            if !isNewSchedule {
+                                Button("삭제") {
+                                    onDelete()
+                                    isPresented = false
+                                }
+                                .buttonStyle(.bordered)
+                                .foregroundColor(.red)
+                                .frame(width: 90, height: 40)
+                            }
+                        }
+                        .padding(.top, 15)
                     }
-                    .padding(.horizontal, 4)
+                    .padding(.horizontal, 25)
+                    .padding(.vertical, 20)
                 }
-            }
-            .padding(.horizontal)
-            
-            HStack {
+                
+                // 하단 여백 추가
                 Spacer()
-                
-                Button("취소") {
-                    isPresented = false
-                }
-                .buttonStyle(.bordered)
-                
-                Button(isNewSchedule ? "저장" : "수정") {
-                    saveSchedule()
-                }
-                .buttonStyle(.bordered)
-                .disabled(!isValidTimeRange)
-                
-                Spacer()
-                
-                if !isNewSchedule {
-                    Button("삭제") {
-                        onDelete()
-                        isPresented = false
-                    }
-                    .buttonStyle(.bordered)
-                    .foregroundColor(.red)
-                }
+                    .frame(height: 60)
             }
         }
-        .padding()
         .onAppear {
-            // 강제로 endHour 값을 올바르게 설정 (첫 화면에서 바로 보이도록)
+            // endHour 값을 올바르게 설정 (첫 화면에서 바로 보이도록)
             if isNewSchedule && selectedEndHour == 1 && selectedStartHour > 1 {
                 DispatchQueue.main.async {
                     if selectedStartHour == 23 {
@@ -300,9 +360,5 @@ struct SchedulePopupView: View {
         updatedSchedule.color = selectedColor
         onSave(updatedSchedule)
         isPresented = false
-    }
-    
-    private func roundToNearestFiveMinutes(_ minutes: Int) -> Int {
-        return (minutes / 5) * 5
     }
 }

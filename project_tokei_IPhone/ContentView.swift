@@ -1,8 +1,6 @@
 import SwiftUI
 import UIKit
 
-// 중복 선언 제거 - RecordingState 및 FloatingRecordingIndicator는 이미 다른 파일에 있음
-
 struct ContentView: View {
     @State private var currentTime = Date()
     @StateObject private var scheduleManager = ScheduleManager()
@@ -465,8 +463,7 @@ struct ContentView: View {
         .onReceive(timer) { _ in
             currentTime = Date()
         }
-        .popover(isPresented: $isPopupPresented) {
-            // currentSchedule에서 직접 시간 정보 사용
+        .sheet(isPresented: $isPopupPresented) {
             SchedulePopupView(
                 isPresented: $isPopupPresented,
                 schedule: $currentSchedule,
@@ -484,12 +481,12 @@ struct ContentView: View {
                 scheduleManager: scheduleManager,
                 initialSelectedHour: hoveredHour ?? selectedHour ?? currentSchedule.hour
             )
-            .frame(width: 300)
-            .padding()
+            .environment(\.colorScheme, isDarkMode ? .dark : .light)
         }
-        .sheet(isPresented: $showAnalysis, content: {
+        .fullScreenCover(isPresented: $showAnalysis, content: {
             if let analysis = scheduleManager.analysisResult {
                 ScheduleAnalysisView(analysis: analysis)
+                    .environment(\.colorScheme, isDarkMode ? .dark : .light)
             }
         })
     }
@@ -571,7 +568,6 @@ struct ContentView: View {
     }
 }
 
-// iOS에서는 CheckboxToggleStyle 구현이 필요함(macOS의 NSButton과 달리 UIKit에는 기본 체크박스가 없음)
 struct CheckboxToggleStyle: ToggleStyle {
     func makeBody(configuration: Configuration) -> some View {
         HStack {
@@ -584,5 +580,3 @@ struct CheckboxToggleStyle: ToggleStyle {
         }
     }
 }
-
-// iOS에서는 ScrollWheelView가 필요 없음 (ScrollView로 대체됨)
