@@ -10,7 +10,7 @@
   <img src="https://github.com/user-attachments/assets/5b43127d-aa43-4f5d-8891-9e8e791749e8" width="200" style="margin-right: 10px; margin-bottom: 10px;" />
 </div>
 
-> ### :warning: 주의!
+# :warning: 주의!
 >
 > ```plaintext
 > Firebase 공적으로 인한 과금을 방지하기 위해 읽기 권한을 제한했습니다.
