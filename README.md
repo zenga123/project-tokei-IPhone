@@ -9,3 +9,15 @@
   <img src="https://github.com/user-attachments/assets/c1a84037-9fe2-4422-961c-30af7a18414e" width="200" style="margin-right: 10px; margin-bottom: 10px;" />
   <img src="https://github.com/user-attachments/assets/5b43127d-aa43-4f5d-8891-9e8e791749e8" width="200" style="margin-right: 10px; margin-bottom: 10px;" />
 </div>
+
+> ### :warning: 주의!
+>
+> ```plaintext
+> Firebase 공적으로 인한 과금을 방지하기 위해 읽기 권한을 제한했습니다.
+> 모든 서비스를 사용하고 싶으시다면 `zenga85@naver.com`으로 문의 바랍니다.
+> ```
+>
+> ```plaintext
+> To prevent charges due to Firebase attacks, we have restricted read permissions.
+> If you wish to use all services, please contact `thelight8080@gmail.com`.
+> ```
