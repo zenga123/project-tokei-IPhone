@@ -13,11 +13,11 @@
 ## :warning: 주의!
 >
 > ```plaintext
-> Firebase 공적으로 인한 과금을 방지하기 위해 읽기 권한을 제한했습니다.
-> 모든 서비스를 사용하고 싶으시다면 `zenga85@naver.com`으로 문의 바랍니다.
+> セキュリティ上の理由により、OpenAI APIキーをコードから削除しました。
+> すべての機能をご利用になりたい場合は、`zenga85@naver.com`までご連絡ください。
 > ```
 >
 > ```plaintext
-> To prevent charges due to Firebase attacks, we have restricted read permissions.
-> If you wish to use all services, please contact `thelight8080@gmail.com`.
+> For security reasons, the OpenAI API Key has been removed from the code.
+> If you wish to use all functionalities, please contact `zenga85@naver.com`.
 > ```
