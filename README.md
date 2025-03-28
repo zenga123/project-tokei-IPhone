@@ -21,3 +21,28 @@
 > For security reasons, the OpenAI API Key has been removed from the code.
 > If you wish to use all functionalities, please contact `zenga85@naver.com`.
 > ```
+
+## :hammer_and_wrench: プロジェクト トケイ 技術スタック
+
+### iOS (Swift)
+- **SwiftUI**  
+  - 宣言型UIを用いた開発  
+  - Path/Shapeを活用したカスタムアナログ時計の実装
+- **MVVMアーキテクチャ**  
+  - ObservableObjectと@PublishedでデータとUIの状態を分離
+- **UIKitとの統合**  
+  - UIDevice、UITraitCollectionなどのUIKit機能をSwiftUIと組み合わせて使用
+- **UserDefaults (JSON直列化)**  
+  - スケジュールデータや色情報をJSONでエンコード/デコードして保存
+- **Timer.publish**  
+  - 時計の針の動きなど、リアルタイムUI更新のためにタイマーイベントを利用
+- **ダークモード対応**  
+  - システムモード連動および手動ダークモード切替に対応
+
+### AI連携
+- **OpenAI API**  
+  - スケジュール分析および時間管理アドバイス機能を実装（ScheduleAnalyzerクラスで管理）
+
+### ビルド/デプロイ環境
+- **Xcode**  
+  - iOSアプリの開発およびシミュレーション
